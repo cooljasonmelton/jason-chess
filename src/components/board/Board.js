@@ -4,11 +4,11 @@ import React from 'react';
 import './Board.css';
 
 const Board = () => {
+    const boardArr = [...new Array(64)]
 
-    const boardArr = new Array(64)    
     return (
         <div className="Board">
-            {boardArr.map(sq => <div className="square">square</div>)}
+            {boardArr.map((sq, i) => <div key={i} className="square cfb"> sq </div>)}
         </div>
     );
 }
