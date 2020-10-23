@@ -7,11 +7,11 @@
     border: 1rem solid #0A090C;
     border-radius: 1rem;
 
-    background-color: #07393C;
+    background-color: #F0EDEE;
     display: grid;
     grid: repeat(8, 1fr) / repeat(8, 1fr);
 }
 
-.square{
+.dark{
     background-color: #90DDF0;
 }
