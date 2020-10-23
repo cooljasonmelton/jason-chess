@@ -1,0 +1,17 @@
+/* COLORS: https://coolors.co/0a090c-f0edee-07393c-2c666e-90ddf0 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.App {
+    width: 100%;
+    height: 100vh;
+}
+
+.cfb {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
