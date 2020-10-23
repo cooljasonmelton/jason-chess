@@ -19,3 +19,18 @@ export const avpawn = require('./avpawn.png')
 
 // marble board background
 export const marbleBG = require('./marble.jpg')
+
+export const pieceObject = {
+    wp: require('./wpawn.png'),
+    wn: require('./wknight.png'),
+    wb: require('./wbishop.png'),
+    wr: require('./wrook.png'),
+    wq: require('./wqueen.png'),
+    wk: require('./wking.png'),
+    bp: require('./bpawn.png'),
+    bn: require('./bknight.png'),
+    bb: require('./bbishop.png'),
+    br: require('./brook.png'),
+    bq: require('./bqueen.png'),
+    bk: require('./bking.png')
+}
