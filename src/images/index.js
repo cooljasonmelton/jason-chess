@@ -34,3 +34,5 @@ export const pieceObject = {
     bq: require('./bqueen.png'),
     bk: require('./bking.png')
 }
+
+
