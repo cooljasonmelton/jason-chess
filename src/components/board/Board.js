@@ -13,9 +13,11 @@ import {clickPawn} from '../pieces/pawn/Pawn'
 import PieceImg from './PieceImg'
 
 const Board = props => {
-    console.log(props.state.board)
-    const { turn, setTurn } = props
-    const {board} = props.state.board
+    // const { turn, setTurn } = props
+    const { board, turn } = props.state
+    const { updateBoard, updateTurn } = props 
+    console.log(turn)
+
     // takes num, returns true if even
     const isEven = n => n % 2 === 0;
     // returns string of classnames for square
@@ -57,10 +59,17 @@ const Board = props => {
         }))
     }
 
+    const changeTurn = () => {
+        updateTurn(!turn)
+    }
+
     return (
-        <div className="Board">
-            {renderBoard()}
-        </div>
+        <>
+            <div className="Board">
+                {renderBoard()}
+            </div>
+            <button onClick={changeTurn}>{turn ? "White" : "Black"}</button>
+        </>
     );
 
 
@@ -68,13 +77,17 @@ const Board = props => {
 
 const mapStateToProps = state => {
     return {
-        state: state
+        state: {
+            board: state.board.board,
+            turn: state.turn.turn 
+        }        
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        login: entry => dispatch({ type: 'UPDATE_BOARD', payload: null })
+        updateBoard: board => dispatch({ type: 'UPDATE_BOARD', payload: board }),
+        updateTurn: turn => dispatch({ type: 'UPDATE_TURN', payload: turn }),
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Board);
