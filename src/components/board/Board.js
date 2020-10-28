@@ -13,10 +13,11 @@ import {clickPawn} from '../pieces/pawn/Pawn'
 import PieceImg from './PieceImg'
 
 const Board = props => {
-    // const { turn, setTurn } = props
-    const { board, turn } = props.state
+    // board: array of arrays 
+    // turn: true for white, false for black
+    // win: null, black, or white
+    const { board, turn, win } = props.state
     const { updateBoard, updateTurn, updateWin } = props 
-    console.log(turn)
 
     // takes num, returns true if even
     const isEven = n => n % 2 === 0;
@@ -30,6 +31,7 @@ const Board = props => {
         return classArr.join(" ")
     };
 
+
     // if piece clicked, determine piece and call correct func
     const clickPiece = (sq, num) => {
         // null sq, return
@@ -42,6 +44,13 @@ const Board = props => {
         if (sq === 'wp') clickPawn()
         // black pawn 
         if (sq === 'bp') clickPawn()
+    }
+
+    const movePiece = () => {
+        
+        
+        
+        updateTurn(!turn)
     }
 
     const renderBoard = () => {
@@ -59,24 +68,19 @@ const Board = props => {
         }))
     }
 
-    const changeTurn = () => {
-        updateTurn(!turn)
-    }
-
     return (
         <div className="Board">
             {renderBoard()}
         </div>
     );
-
-
 }
 
 const mapStateToProps = state => {
     return {
         state: {
             board: state.board.board,
-            turn: state.turn.turn 
+            turn: state.turn.turn,
+            win: state.win.win 
         }        
     }
 }
