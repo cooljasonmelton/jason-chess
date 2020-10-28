@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 
+
+
 // styling
 import './App.css';
 
@@ -8,6 +10,7 @@ import Navbar from './components/navbar/Navbar'
 import Board from './components/board/Board'
 
 const App = () => {
+
   // later move this to redux or something to make it available to whole app
   const [board, setBoard] = useState(
     [
