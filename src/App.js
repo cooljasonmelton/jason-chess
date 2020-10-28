@@ -32,11 +32,7 @@ const App = () => {
       <Navbar/>
 
       <div className="cfb">
-        <Board 
-          board={board}
-          setBoard={setBoard}
-          turn={turn}
-          setTurn={setTurn}/>
+        <Board/>
       </div>
 
     </div>
