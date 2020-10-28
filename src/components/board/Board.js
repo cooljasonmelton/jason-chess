@@ -15,7 +15,7 @@ import PieceImg from './PieceImg'
 const Board = props => {
     // const { turn, setTurn } = props
     const { board, turn } = props.state
-    const { updateBoard, updateTurn } = props 
+    const { updateBoard, updateTurn, updateWin } = props 
     console.log(turn)
 
     // takes num, returns true if even
@@ -64,12 +64,9 @@ const Board = props => {
     }
 
     return (
-        <>
-            <div className="Board">
-                {renderBoard()}
-            </div>
-            <button onClick={changeTurn}>{turn ? "White" : "Black"}</button>
-        </>
+        <div className="Board">
+            {renderBoard()}
+        </div>
     );
 
 
@@ -88,6 +85,7 @@ const mapDispatchToProps = dispatch => {
     return {
         updateBoard: board => dispatch({ type: 'UPDATE_BOARD', payload: board }),
         updateTurn: turn => dispatch({ type: 'UPDATE_TURN', payload: turn }),
+        updateTurn: win => dispatch({ type: 'UPDATE_WIN', payload: win }),
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Board);
