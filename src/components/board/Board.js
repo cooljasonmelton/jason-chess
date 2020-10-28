@@ -1,5 +1,8 @@
 import React from 'react';
 
+// redux
+import { connect } from 'react-redux';
+
 // styling
 import './Board.css';
 
@@ -10,7 +13,9 @@ import {clickPawn} from '../pieces/pawn/Pawn'
 import PieceImg from './PieceImg'
 
 const Board = props => {
-    const { board, setBoard, turn, setTurn } = props
+    console.log(props.state.board)
+    const { turn, setTurn } = props
+    const {board} = props.state.board
     // takes num, returns true if even
     const isEven = n => n % 2 === 0;
     // returns string of classnames for square
@@ -57,9 +62,22 @@ const Board = props => {
             {renderBoard()}
         </div>
     );
+
+
 }
 
-export default Board;
+const mapStateToProps = state => {
+    return {
+        state: state
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        login: entry => dispatch({ type: 'UPDATE_BOARD', payload: null })
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Board);
 
 
 
