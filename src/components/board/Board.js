@@ -16,8 +16,8 @@ const Board = props => {
     // board: array of arrays 
     // turn: true for white, false for black
     // win: null, black, or white
-    const { board, turn, win } = props.state
-    const { updateBoard, updateTurn, updateWin } = props 
+    const { board, turn, win } = props.state;
+    const { updateBoard, updateTurn, updateWin } = props; 
 
     // takes num, returns true if even
     const isEven = n => n % 2 === 0;
