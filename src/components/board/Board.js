@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import './Board.css';
 
 // piece functions
-import {clickPawn} from '../pieces/pawn/Pawn'
+import { clickPawn } from '../pieces/pawn/Pawn'
 
 // components
 import PieceImg from './PieceImg'
@@ -16,8 +16,11 @@ const Board = props => {
     // board: array of arrays 
     // turn: true for white, false for black
     // win: null, black, or white
-    const { board, turn, win } = props.state;
-    const { updateBoard, updateTurn, updateWin } = props; 
+    const { board, turn } = props.state;
+    // const { board, turn, win } = props.state;
+
+    // const { updateBoard, updateTurn, updateWin } = props; 
+
 
     // takes num, returns true if even
     const isEven = n => n % 2 === 0;
@@ -46,12 +49,9 @@ const Board = props => {
         if (sq === 'bp') clickPawn()
     }
 
-    const movePiece = () => {
-        
-        
-        
-        updateTurn(!turn)
-    }
+    // const movePiece = () => {        
+    //     updateTurn(!turn)
+    // }
 
     const renderBoard = () => {
         let startNum = 0
@@ -89,7 +89,7 @@ const mapDispatchToProps = dispatch => {
     return {
         updateBoard: board => dispatch({ type: 'UPDATE_BOARD', payload: board }),
         updateTurn: turn => dispatch({ type: 'UPDATE_TURN', payload: turn }),
-        updateTurn: win => dispatch({ type: 'UPDATE_WIN', payload: win }),
+        updateWin: win => dispatch({ type: 'UPDATE_WIN', payload: win }),
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Board);
