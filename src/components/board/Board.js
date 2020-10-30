@@ -35,6 +35,7 @@ const Board = props => {
 
     // if piece clicked, determine piece and call correct func
     const clickPiece = (sq, num) => {
+        console.log(num)
         // null sq, return
         if (!sq) return
         // if not turn, return
@@ -56,9 +57,8 @@ const Board = props => {
                 return (
                     <div key={sqNum} 
                         className={squareClass(sqNum)}>
-                        <Pawn key={sqNum} piece={sq}/>                        
+                        <Pawn key={sqNum} piece={sq} sqNum={sqNum}/>                        
                     </div>
-
                 )
             }
 

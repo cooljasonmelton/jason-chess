@@ -3,9 +3,9 @@ export default function board(state = {
         ["br", "bn", "bb", "bq", "bk", "bb", "bn", "br"],
         ["bp", "bp", "bp", "bp", "bp", "bp", "bp", "bp"],
         [null, null, null, null, null, null, null, null],
-        [null, null, null, null, null, null, null, null],
-        [null, null, null, null, null, null, null, null],
-        [null, null, null, null, null, null, null, null],
+        [null, null, "wp", null, "wp", null, null, null],
+        [null, null, null, null, "wp", null, null, null],
+        [null, null, null, "wp", null, null, null, null],
         ["wp", "wp", "wp", "wp", "wp", "wp", "wp", "wp"],
         ["wr", "wn", "wb", "wq", "wk", "wb", "wn", "wr"]
     ]
@@ -13,7 +13,7 @@ export default function board(state = {
     switch (action.type) {
         case 'UPDATE_BOARD':
             return { 
-                board: action.payload.board,
+                board: action.payload,
             };
         default:
             return state;
