@@ -2,10 +2,10 @@ export default function board(state = {
     board: [
         ["br", "bn", "bb", "bq", "bk", "bb", "bn", "br"],
         ["bp", "bp", "bp", "bp", "bp", "bp", "bp", "bp"],
-        [null, null, "wp", null, null, null, null, null],
-        [null, null, null, null, "wp", null, null, null],
-        [null, null, null, null, "wp", null, null, null],
-        [null, null, null, "wp", null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null, null, null, null, null],
         ["wp", "wp", "wp", "wp", "wp", "wp", "wp", "wp"],
         ["wr", "wn", "wb", "wq", "wk", "wb", "wn", "wr"]
     ]
