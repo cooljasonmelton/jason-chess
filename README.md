@@ -7,7 +7,10 @@
 
     - enter player name modal
 
-    - chess functionality
+    ---- GAME PLAY ----
+
+    one function for moving pieces (takes piece, from sq, to sq)
+    
     ---PAWN MOVES
     1 or 2 at start
     1 after

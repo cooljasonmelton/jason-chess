@@ -13,13 +13,13 @@ const Info = props => {
   
     return (
         <div className="Info cfb">
+            <h2>Turn: {turn ? "White":"Black"}</h2>
             <div> 
                 <p>Black Player Name:</p>
                 <h2>jason</h2>
                 <p>White Player Name:</p>
                 <h2>jason</h2>
             </div>
-            <h1>Turn: {turn ? "White":"Black"}</h1>
             {win ? `${win}` : ""}
         </div>
     );

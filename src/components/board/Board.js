@@ -6,11 +6,9 @@ import { connect } from 'react-redux';
 // styling
 import './Board.css';
 
-// piece functions
-import { clickPawn } from '../pieces/pawn/Pawn'
-
 // components
 import PieceImg from './PieceImg'
+import Pawn from '../pieces/pawn/Pawn';
 
 const Board = props => {
     // board: array of arrays 
@@ -42,11 +40,6 @@ const Board = props => {
         // if not turn, return
         if (turn && sq.charAt(0) === 'b') return
         if (!turn && sq.charAt(0) === 'w') return
-
-        // white pawn
-        if (sq === 'wp') clickPawn()
-        // black pawn 
-        if (sq === 'bp') clickPawn()
     }
 
     // const movePiece = () => {        
@@ -58,6 +51,17 @@ const Board = props => {
         const counter = () => startNum++
         return board.map(rank => rank.map(sq => {
             let sqNum = counter()
+            // render pawn
+            if (sq === 'wp' || sq === 'bp'){
+                return (
+                    <div key={sqNum} 
+                        className={squareClass(sqNum)}>
+                        <Pawn key={sqNum} piece={sq}/>                        
+                    </div>
+
+                )
+            }
+
             return (
                 <div key={sqNum} 
                     className={squareClass(sqNum)}
@@ -93,7 +97,3 @@ const mapDispatchToProps = dispatch => {
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Board);
-
-
-
-
