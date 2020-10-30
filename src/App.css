@@ -16,4 +16,12 @@
     justify-content: center;
 }
 
+.info-board-c{
+    margin: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: space-around;
+}
+
 

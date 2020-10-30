@@ -14,12 +14,9 @@ const App = () => {
     <div className="App">
       <Navbar/>
 
-      <div> 
+      <div className="info-board-c"> 
         <Info/>
-
-        <div className="cfb">
-          <Board/>
-        </div>
+        <Board/>
       </div>
 
 

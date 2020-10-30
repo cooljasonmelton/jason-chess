@@ -1,12 +1,11 @@
-
-
-
 <!-- 
     Summary: Chess game where if your name is Jason, you can't lose.
 
     To do:
     X - make and style board 
     X - map pieces to board based on board array
+
+    - enter player name modal
 
     - chess functionality
     ---PAWN MOVES

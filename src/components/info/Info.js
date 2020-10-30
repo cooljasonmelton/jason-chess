@@ -13,7 +13,9 @@ const Info = props => {
   
     return (
         <div className="Info">
-            {turn ? "White":"Black"}
+            <h1>White Player Name:</h1>
+            <h1>Black Player Name:</h1>
+            <h1>Turn: {turn ? "White":"Black"}</h1>
             {win ? `${win}` : ""}
         </div>
     );
