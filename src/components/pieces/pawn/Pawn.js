@@ -6,6 +6,9 @@ import './Pawn.css';
 // redux
 import { connect } from 'react-redux';
 
+// gameplay funcs
+import clearAvFromBoard from '../../../gameplayFuncs/clearAvFromBoard'
+
 // components
 import PieceImg from '../../board/PieceImg'
 
@@ -16,7 +19,7 @@ const Pawn = props => {
 
     const clickPawn = () => {
         // copy of board
-        const editBoard = [...board]
+        const editBoard = clearAvFromBoard([...board])
 
         // WHITE PAWN   
         if (turn && piece.charAt(0) === 'w') {
