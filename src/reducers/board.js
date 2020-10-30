@@ -13,7 +13,7 @@ export default function board(state = {
     switch (action.type) {
         case 'UPDATE_BOARD':
             return { 
-                board: action.payload.board,
+                board: action.payload,
             };
         default:
             return state;

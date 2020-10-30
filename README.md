@@ -1,6 +1,3 @@
-
-
-
 <!-- 
     Summary: Chess game where if your name is Jason, you can't lose.
 
@@ -8,7 +5,12 @@
     X - make and style board 
     X - map pieces to board based on board array
 
-    - chess functionality
+    - enter player name modal
+
+    ---- GAME PLAY ----
+
+    one function for moving pieces (takes piece, from sq, to sq)
+    
     ---PAWN MOVES
     1 or 2 at start
     1 after
