@@ -25,7 +25,6 @@ const Pawn = props => {
                 let square = editBoard[Math.floor((sqNum)/8)][sqNum % 8]
                 let oneSquare = editBoard[Math.floor((sqNum-8)/8)][sqNum % 8]
                 let twoSquare = editBoard[Math.floor((sqNum-16)/8)][sqNum % 8]
-                console.log(sqNum, sqNum - 8, sqNum - 16)
                 console.log(square, oneSquare, twoSquare)
                 if (!twoSquare && !oneSquare) editBoard[Math.floor((sqNum-16)/8)][sqNum % 8] = "av"
             }

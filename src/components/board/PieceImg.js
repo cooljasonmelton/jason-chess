@@ -9,10 +9,12 @@ import './Board.css';
 const PieceImg = props => {
     const { piece } = props
     return (
-        piece ? 
-            <img className="piece-img" src={pieceObject[piece]} alt="piece"/> 
-                : <div></div> 
-        );
+        piece === "av" ?
+            <div className="av-move"></div>
+                : piece ? 
+                    <img className="piece-img" src={pieceObject[piece]} alt="piece"/> 
+                        : <div></div> 
+    );
 }
 
 export default PieceImg;

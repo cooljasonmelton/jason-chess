@@ -52,6 +52,7 @@ const Board = props => {
         const counter = () => startNum++
         return board.map(rank => rank.map(sq => {
             let sqNum = counter()
+
             // render pawn
             if (sq === 'wp' || sq === 'bp'){
                 return (
