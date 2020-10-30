@@ -23,16 +23,17 @@ const Pawn = props => {
 
         // WHITE PAWN   
         if (turn && piece.charAt(0) === 'w') {
-            // pawn can move one or two spaces
+            let square = editBoard[Math.floor((sqNum)/8)][sqNum % 8]
+            let oneSquare = editBoard[Math.floor((sqNum-8)/8)][sqNum % 8]
+
+            // pawn can move two spaces
             if (sqNum > 47 && sqNum < 56){
-                let square = editBoard[Math.floor((sqNum)/8)][sqNum % 8]
-                let oneSquare = editBoard[Math.floor((sqNum-8)/8)][sqNum % 8]
                 let twoSquare = editBoard[Math.floor((sqNum-16)/8)][sqNum % 8]
-                console.log(square, oneSquare, twoSquare)
                 if (!twoSquare && !oneSquare) editBoard[Math.floor((sqNum-16)/8)][sqNum % 8] = "av"
             }
     
             // pawn can move one space
+            if (!oneSquare) editBoard[Math.floor((sqNum-8)/8)][sqNum % 8] = "av"
     
             // pawn can capture
     
