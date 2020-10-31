@@ -1,11 +1,23 @@
+# jason chess
+
 <!-- 
     Summary: Chess game where if your name is Jason, you can't lose.
 
     To do:
-    X - make and style board 
-    X - map pieces to board based on board array
-
-    - enter player name modal
+    - enter player name modal before game starts
+    - piece functionality 
+        - pawn
+        - rook
+        - bishop 
+        - knight
+        - queen
+        - king
+    - check 
+    - checkmate
+    - castling 
+    - pawn promotion 
+    - jason rule 
+    
 
     ---- GAME PLAY ----
 
