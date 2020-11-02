@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 // styling
 import './Pawn.css';
@@ -16,8 +16,16 @@ import PieceImg from '../../board/PieceImg'
 const Pawn = props => {
     const { piece, sqNum, updateBoard } =  props
     const { board, turn } = props.state
+    const [clicked, setClicked] = useState(false)
 
     const clickPawn = () => {
+        // if already clicked, remove av sq (deselect)
+        if (clicked){
+            setClicked(false)
+            return updateBoard(clearAvFromBoard([...board]))
+        }
+        else setClicked(true)
+
         // copy of board
         const editBoard = clearAvFromBoard([...board])
 
@@ -67,7 +75,7 @@ const Pawn = props => {
 
 
     return (
-        <div className="Pawn" onClick={clickPawn}>
+        <div className="Pawn cfb" onClick={clickPawn}>
             <PieceImg piece={piece}/>
         </div>
     );
