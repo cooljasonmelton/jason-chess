@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 // styling
 import './Board.css';
 
-// move piece func 
-import movePiece from '../../gameplayFuncs/movePiece'
+// helper funcs 
+import isEven from '../../helperFuncs/generalFuncs/isEven'
 
 // components
 import PieceImg from './PieceImg'
@@ -17,10 +17,9 @@ const Board = props => {
     // board: array of arrays 
     // turn: true for white, false for black
     // win: null, black, or white
-    const { board, turn } = props.state;
+    const { board, turn, clickSq } = props.state;
+    const { updateTurn } = props
 
-    // takes num, returns true if even
-    const isEven = n => n % 2 === 0;
     // returns string of classnames for square
     const squareClass = index => {
         const classArr = ["cfb"]
@@ -30,6 +29,10 @@ const Board = props => {
         if ((rank && !file) || (!rank && file)) classArr.push("dark")
         return classArr.join(" ")
     };
+
+    const movePiece = () =>  {
+
+    }
     
     const renderBoard = () => {
         let startNum = 0
@@ -42,7 +45,7 @@ const Board = props => {
                 return (
                     <div key={sqNum}
                         className={squareClass(sqNum)}
-                        onClick={null}>
+                        onClick={movePiece}>
                         <PieceImg piece={sq ? sq : false}/>
                     </div>
                 )
@@ -78,6 +81,7 @@ const mapStateToProps = state => {
     return {
         state: {
             board: state.board.board,
+            clickSq: state.clickSq.clickSq,
             turn: state.turn.turn,
             win: state.win.win 
         }        
