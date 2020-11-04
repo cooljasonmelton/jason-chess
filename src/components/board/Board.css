@@ -14,18 +14,19 @@
     background-color: #90DDF0;
 }
 
-/* piece present */
-.has-p:hover{
+/* not null, av or piece present */
+.has-p {
     cursor: pointer;
 }
 
 .piece-img {
     width: 85%;
     height: 85%;
+    opacity: 0.9;
 }
 
-.has-p > div > .piece-img:hover{
-    border: 1px solid #07393C;
+.has-p > div > .piece-img {
+    opacity: 1;
 }
 
 .av-move{
@@ -33,4 +34,5 @@
     height: 35%;
     border-radius: 50%;
     background-color: black;
+    opacity: 0.3;
 }

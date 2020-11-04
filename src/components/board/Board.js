@@ -31,8 +31,9 @@ const Board = props => {
         if ((rank && !file) || (!rank && file)) classArr.push("dark")
 
         // indicate clickable piece
+        let checkP = piece && piece.charAt(0)
         let isTurn = turn ? "w" : "b"
-        if (piece && piece.charAt(0) === isTurn) classArr.push("has-p")
+        if ((checkP === isTurn) || (checkP === "a")) classArr.push("has-p")
         return classArr.join(" ")
     };
 
@@ -133,7 +134,9 @@ const Board = props => {
                 )
             }
             // render empty / null square
-            return <div key={sqNum} className={squareClass(sqNum, sq)}></div>
+            return <div key={sqNum} className={squareClass(sqNum, sq)}>
+                <PieceImg piece={sq ? sq : false}/>
+            </div>
         }))
     }
 
