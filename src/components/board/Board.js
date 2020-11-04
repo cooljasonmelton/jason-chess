@@ -132,13 +132,8 @@ const Board = props => {
                     </div>
                 )
             }
-
-            return (
-                <div key={sqNum} 
-                    className={squareClass(sqNum, sq)}>
-                    <PieceImg piece={sq ? sq : false}/>
-                </div>
-            )
+            // render empty / null square
+            return <div key={sqNum} className={squareClass(sqNum, sq)}></div>
         }))
     }
 
