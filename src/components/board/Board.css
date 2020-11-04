@@ -9,14 +9,23 @@
     display: grid;
     grid: repeat(8, 1fr) / repeat(8, 1fr);
 }
-
+/* dark squares */
 .dark{
     background-color: #90DDF0;
+}
+
+/* piece present */
+.has-p:hover{
+    cursor: pointer;
 }
 
 .piece-img {
     width: 85%;
     height: 85%;
+}
+
+.has-p > div > .piece-img:hover{
+    border: 1px solid #07393C;
 }
 
 .av-move{

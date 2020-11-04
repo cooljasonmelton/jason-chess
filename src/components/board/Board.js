@@ -22,12 +22,17 @@ const Board = props => {
     const { updateTurn, updateBoard } = props
 
     // returns string of classnames for square
-    const squareClass = index => {
+    const squareClass = (index, piece) => {
         const classArr = ["cfb"]
+
         // rank even, file odd OR rank odd, file even --> dark square
         const rank = isEven(Math.floor(index/8))
         const file = isEven(index % 8)
         if ((rank && !file) || (!rank && file)) classArr.push("dark")
+
+        // indicate clickable piece
+        let isTurn = turn ? "w" : "b"
+        if (piece && piece.charAt(0) === isTurn) classArr.push("has-p")
         return classArr.join(" ")
     };
 
@@ -35,17 +40,18 @@ const Board = props => {
         // clear available sq markers
         const editBoard = clearAvFromBoard([...board])
 
-        // save peice code
+        // save piece code
         let piece = editBoard[Math.floor(clickSq/8)][clickSq % 8]
 
-        // clear from-square
+        // clear from-square of piece code
         editBoard[Math.floor(clickSq/8)][clickSq % 8] = null
 
-        // update to-square
+        // update to-square with piece code
         editBoard[Math.floor(toSq/8)][toSq % 8] = piece
 
         // update board 
         updateBoard(editBoard)
+
         // update turn
         updateTurn(!turn)
     }
@@ -60,7 +66,7 @@ const Board = props => {
             if (sq === 'av'){
                 return (
                     <div key={sqNum}
-                        className={squareClass(sqNum)}
+                        className={squareClass(sqNum, sq)}
                         onClick={() => movePiece(sqNum)}>
                         <PieceImg piece={sq ? sq : false}/>
                     </div>
@@ -71,18 +77,63 @@ const Board = props => {
             if (sq === 'wp' || sq === 'bp'){
                 return (
                     <div key={sqNum} 
-                        className={squareClass(sqNum)}>
+                        className={squareClass(sqNum, sq)}>
                         <Pawn key={sqNum} piece={sq} sqNum={sqNum}/>                        
                     </div>
                 )
             }
 
-            return (
-                <div key={sqNum} 
-                    className={squareClass(sqNum)}>
-                    <PieceImg piece={sq ? sq : false}/>
-                </div>
-            )
+            // render bishop
+            if (sq === 'wb' || sq === 'bb'){
+                return (
+                    <div key={sqNum} 
+                        className={squareClass(sqNum, sq)}>
+                        <Pawn key={sqNum} piece={sq} sqNum={sqNum}/>                        
+                    </div>
+                )
+            }
+
+            // render knight
+            if (sq === 'wn' || sq === 'bn'){
+                return (
+                    <div key={sqNum} 
+                        className={squareClass(sqNum, sq)}>
+                        <Pawn key={sqNum} piece={sq} sqNum={sqNum}/>                        
+                    </div>
+                )
+            }
+
+            // render rook
+            if (sq === 'wr' || sq === 'br'){
+                return (
+                    <div key={sqNum} 
+                        className={squareClass(sqNum, sq)}>
+                        <Pawn key={sqNum} piece={sq} sqNum={sqNum}/>                        
+                    </div>
+                )
+            }
+
+            // render queen
+            if (sq === 'wq' || sq === 'bq'){
+                return (
+                    <div key={sqNum} 
+                        className={squareClass(sqNum, sq)}>
+                        <Pawn key={sqNum} piece={sq} sqNum={sqNum}/>                        
+                    </div>
+                )
+            }
+
+            // render king
+            if (sq === 'wk' || sq === 'bk'){
+                return (
+                    <div key={sqNum} 
+                        className={squareClass(sqNum, sq)}>
+                        <Pawn key={sqNum} piece={sq} sqNum={sqNum}/>                        
+                    </div>
+                )
+            }
+            // render empty / null square
+            return <div key={sqNum} className={squareClass(sqNum, sq)}></div>
         }))
     }
 
