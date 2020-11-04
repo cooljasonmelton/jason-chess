@@ -15,13 +15,17 @@
 }
 
 /* piece present */
-.has-p{
+.has-p:hover{
     cursor: pointer;
 }
 
 .piece-img {
     width: 85%;
     height: 85%;
+}
+
+.has-p > div > .piece-img:hover{
+    border: 1px solid #07393C;
 }
 
 .av-move{
