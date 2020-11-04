@@ -7,18 +7,20 @@ import './Pawn.css';
 import { connect } from 'react-redux';
 
 // gameplay funcs
-import clearAvFromBoard from '../../../gameplayFuncs/clearAvFromBoard'
+import clearAvFromBoard from '../../../helperFuncs/gameplayFuncs/clearAvFromBoard'
 
 // components
 import PieceImg from '../../board/PieceImg'
 
 
 const Pawn = props => {
-    const { piece, sqNum, updateBoard } =  props
-    const { board, turn } = props.state
     const [clicked, setClicked] = useState(false)
+    const { piece, sqNum, updateBoard, updateClickSq } =  props
+    const { board, turn } = props.state
 
     const clickPawn = () => {
+        updateClickSq(sqNum)
+
         // if already clicked, remove av sq (deselect)
         if (clicked){
             setClicked(false)
@@ -85,6 +87,7 @@ const mapStateToProps = state => {
     return {
         state: {
             board: state.board.board,
+            clickSq: state.clickSq.clickSq,
             turn: state.turn.turn,
         }        
     }
@@ -93,6 +96,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         updateBoard: board => dispatch({ type: 'UPDATE_BOARD', payload: board }),
+        updateClickSq: clickSq => dispatch({ type: 'UPDATE_SQUARE', payload: clickSq }),
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Pawn);

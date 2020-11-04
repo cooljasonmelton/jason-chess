@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 // styling
 import './Board.css';
 
+// helper funcs 
+import isEven from '../../helperFuncs/generalFuncs/isEven'
+
 // components
 import PieceImg from './PieceImg'
 import Pawn from '../pieces/pawn/Pawn';
@@ -14,14 +17,9 @@ const Board = props => {
     // board: array of arrays 
     // turn: true for white, false for black
     // win: null, black, or white
-    const { board, turn } = props.state;
-    // const { board, turn, win } = props.state;
+    const { board, turn, clickSq } = props.state;
+    const { updateTurn } = props
 
-    // const { updateBoard, updateTurn, updateWin } = props; 
-
-
-    // takes num, returns true if even
-    const isEven = n => n % 2 === 0;
     // returns string of classnames for square
     const squareClass = index => {
         const classArr = ["cfb"]
@@ -32,26 +30,26 @@ const Board = props => {
         return classArr.join(" ")
     };
 
+    const movePiece = () =>  {
 
-    // if piece clicked, determine piece and call correct func
-    const clickPiece = (sq, num) => {
-        console.log(num)
-        // null sq, return
-        if (!sq) return
-        // if not turn, return
-        if (turn && sq.charAt(0) === 'b') return
-        if (!turn && sq.charAt(0) === 'w') return
     }
-
-    // const movePiece = () => {        
-    //     updateTurn(!turn)
-    // }
-
+    
     const renderBoard = () => {
         let startNum = 0
         const counter = () => startNum++
         return board.map(rank => rank.map(sq => {
             let sqNum = counter()
+            
+            // available to move square
+            if (sq === 'av'){
+                return (
+                    <div key={sqNum}
+                        className={squareClass(sqNum)}
+                        onClick={movePiece}>
+                        <PieceImg piece={sq ? sq : false}/>
+                    </div>
+                )
+            }
 
             // render pawn
             if (sq === 'wp' || sq === 'bp'){
@@ -65,8 +63,7 @@ const Board = props => {
 
             return (
                 <div key={sqNum} 
-                    className={squareClass(sqNum)}
-                    onClick={() => clickPiece(sq, sqNum)}>
+                    className={squareClass(sqNum)}>
                     <PieceImg piece={sq ? sq : false}/>
                 </div>
             )
@@ -84,6 +81,7 @@ const mapStateToProps = state => {
     return {
         state: {
             board: state.board.board,
+            clickSq: state.clickSq.clickSq,
             turn: state.turn.turn,
             win: state.win.win 
         }        
