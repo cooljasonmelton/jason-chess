@@ -22,11 +22,6 @@
 .piece-img {
     width: 85%;
     height: 85%;
-    opacity: 0.9;
-}
-
-.has-p > div > .piece-img {
-    opacity: 1;
 }
 
 .av-move{
