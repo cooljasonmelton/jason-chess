@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 // styling
 import './Board.css';
 
+// move piece func 
+import movePiece from '../../gameplayFuncs/movePiece'
+
 // components
 import PieceImg from './PieceImg'
 import Pawn from '../pieces/pawn/Pawn';
@@ -15,10 +18,6 @@ const Board = props => {
     // turn: true for white, false for black
     // win: null, black, or white
     const { board, turn } = props.state;
-    // const { board, turn, win } = props.state;
-
-    // const { updateBoard, updateTurn, updateWin } = props; 
-
 
     // takes num, returns true if even
     const isEven = n => n % 2 === 0;
@@ -31,27 +30,23 @@ const Board = props => {
         if ((rank && !file) || (!rank && file)) classArr.push("dark")
         return classArr.join(" ")
     };
-
-
-    // if piece clicked, determine piece and call correct func
-    const clickPiece = (sq, num) => {
-        console.log(num)
-        // null sq, return
-        if (!sq) return
-        // if not turn, return
-        if (turn && sq.charAt(0) === 'b') return
-        if (!turn && sq.charAt(0) === 'w') return
-    }
-
-    // const movePiece = () => {        
-    //     updateTurn(!turn)
-    // }
-
+    
     const renderBoard = () => {
         let startNum = 0
         const counter = () => startNum++
         return board.map(rank => rank.map(sq => {
             let sqNum = counter()
+            
+            // available to move square
+            if (sq === 'av'){
+                return (
+                    <div key={sqNum}
+                        className={squareClass(sqNum)}
+                        onClick={null}>
+                        <PieceImg piece={sq ? sq : false}/>
+                    </div>
+                )
+            }
 
             // render pawn
             if (sq === 'wp' || sq === 'bp'){
@@ -65,8 +60,7 @@ const Board = props => {
 
             return (
                 <div key={sqNum} 
-                    className={squareClass(sqNum)}
-                    onClick={() => clickPiece(sq, sqNum)}>
+                    className={squareClass(sqNum)}>
                     <PieceImg piece={sq ? sq : false}/>
                 </div>
             )

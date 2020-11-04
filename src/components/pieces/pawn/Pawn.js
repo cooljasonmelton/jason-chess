@@ -14,9 +14,9 @@ import PieceImg from '../../board/PieceImg'
 
 
 const Pawn = props => {
+    const [clicked, setClicked] = useState(false)
     const { piece, sqNum, updateBoard } =  props
     const { board, turn } = props.state
-    const [clicked, setClicked] = useState(false)
 
     const clickPawn = () => {
         // if already clicked, remove av sq (deselect)
