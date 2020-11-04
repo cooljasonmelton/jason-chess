@@ -22,12 +22,13 @@ const Board = props => {
     const { updateTurn, updateBoard } = props
 
     // returns string of classnames for square
-    const squareClass = index => {
+    const squareClass = (index, piece) => {
         const classArr = ["cfb"]
         // rank even, file odd OR rank odd, file even --> dark square
         const rank = isEven(Math.floor(index/8))
         const file = isEven(index % 8)
         if ((rank && !file) || (!rank && file)) classArr.push("dark")
+        if (piece) classArr.push("has-p")
         return classArr.join(" ")
     };
 
@@ -60,7 +61,7 @@ const Board = props => {
             if (sq === 'av'){
                 return (
                     <div key={sqNum}
-                        className={squareClass(sqNum)}
+                        className={squareClass(sqNum, sq)}
                         onClick={() => movePiece(sqNum)}>
                         <PieceImg piece={sq ? sq : false}/>
                     </div>
@@ -71,7 +72,7 @@ const Board = props => {
             if (sq === 'wp' || sq === 'bp'){
                 return (
                     <div key={sqNum} 
-                        className={squareClass(sqNum)}>
+                        className={squareClass(sqNum, sq)}>
                         <Pawn key={sqNum} piece={sq} sqNum={sqNum}/>                        
                     </div>
                 )
@@ -79,7 +80,7 @@ const Board = props => {
 
             return (
                 <div key={sqNum} 
-                    className={squareClass(sqNum)}>
+                    className={squareClass(sqNum, sq)}>
                     <PieceImg piece={sq ? sq : false}/>
                 </div>
             )

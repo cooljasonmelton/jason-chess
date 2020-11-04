@@ -9,9 +9,14 @@
     display: grid;
     grid: repeat(8, 1fr) / repeat(8, 1fr);
 }
-
+/* dark squares */
 .dark{
     background-color: #90DDF0;
+}
+
+/* piece present */
+.has-p{
+    cursor: pointer;
 }
 
 .piece-img {
