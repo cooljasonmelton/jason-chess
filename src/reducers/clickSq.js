@@ -1,5 +1,5 @@
 export default function clickSq(state = { 
-    clickSq: 64
+    clickSq: null
 }, action) {
     switch (action.type) {
         case 'UPDATE_SQUARE':

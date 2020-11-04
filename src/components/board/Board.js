@@ -8,6 +8,7 @@ import './Board.css';
 
 // helper funcs 
 import isEven from '../../helperFuncs/generalFuncs/isEven'
+import clearAvFromBoard from '../../helperFuncs/gameplayFuncs/clearAvFromBoard'
 
 // components
 import PieceImg from './PieceImg'
@@ -18,7 +19,7 @@ const Board = props => {
     // turn: true for white, false for black
     // win: null, black, or white
     const { board, turn, clickSq } = props.state;
-    const { updateTurn } = props
+    const { updateTurn, updateBoard } = props
 
     // returns string of classnames for square
     const squareClass = index => {
@@ -30,8 +31,23 @@ const Board = props => {
         return classArr.join(" ")
     };
 
-    const movePiece = () =>  {
+    const movePiece = toSq =>  {
+        // clear available sq markers
+        const editBoard = clearAvFromBoard([...board])
 
+        // save peice code
+        let piece = editBoard[Math.floor(clickSq/8)][clickSq % 8]
+
+        // clear from-square
+        editBoard[Math.floor(clickSq/8)][clickSq % 8] = null
+
+        // update to-square
+        editBoard[Math.floor(toSq/8)][toSq % 8] = piece
+
+        // update board 
+        updateBoard(editBoard)
+        // update turn
+        updateTurn(!turn)
     }
     
     const renderBoard = () => {
@@ -45,7 +61,7 @@ const Board = props => {
                 return (
                     <div key={sqNum}
                         className={squareClass(sqNum)}
-                        onClick={movePiece}>
+                        onClick={() => movePiece(sqNum)}>
                         <PieceImg piece={sq ? sq : false}/>
                     </div>
                 )
