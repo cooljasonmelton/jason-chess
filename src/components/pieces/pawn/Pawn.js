@@ -14,22 +14,17 @@ import PieceImg from '../../board/PieceImg'
 
 
 const Pawn = props => {
-    const [clicked, setClicked] = useState(false)
+    // const [clicked, setClicked] = useState(false)
     const { piece, sqNum, updateBoard, updateClickSq } =  props
-    const { board, turn } = props.state
+    const { board, turn, clickSq } = props.state
 
     const clickPawn = () => {
-        updateClickSq(sqNum)
-
-        // if already clicked, remove av sq (deselect)
-        if (clicked){
-            setClicked(false)
-            return updateBoard(clearAvFromBoard([...board]))
-        }
-        else setClicked(true)
-
         // copy of board
         const editBoard = clearAvFromBoard([...board])
+        
+        // if pawn already clicked, clear av squares
+        updateClickSq(sqNum)
+        if (clickSq === sqNum) return updateClickSq(null) && updateBoard(editBoard)
 
         // WHITE PAWN   
         if (turn && piece.charAt(0) === 'w') {
