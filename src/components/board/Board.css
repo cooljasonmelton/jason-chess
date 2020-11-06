@@ -16,14 +16,22 @@
 .has-p { cursor: pointer; }
 
 .piece-img {
+    z-index: 0;
     width: 85%;
     height: 85%;
 }
 
 .av-move{
+    z-index: 1;
     width: 35%;
     height: 35%;
     border-radius: 50%;
     background-color: black;
     opacity: 0.3;
+
+}
+
+.cp-c{ 
+    width: 100%;
+    
 }
