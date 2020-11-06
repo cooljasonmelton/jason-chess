@@ -34,6 +34,8 @@ const Pawn = props => {
         // WHITE PAWN   
         if (turn && piece.charAt(0) === 'w') {
             // let square = editBoard[Math.floor((sqNum)/8)][sqNum % 8]
+
+
             let oneSquare = editBoard[Math.floor((sqNum-8)/8)][sqNum % 8]
 
             // pawn can move two spaces
@@ -46,7 +48,11 @@ const Pawn = props => {
             if (!oneSquare) editBoard[Math.floor((sqNum-8)/8)][sqNum % 8] = "av"
     
             // pawn can capture
-    
+            let capLeftSq = editBoard[Math.floor((sqNum)/8)-1][(sqNum % 8)-1]
+            let capRightSq = editBoard[Math.floor((sqNum)/8)-1][(sqNum % 8)+1]
+            if (capLeftSq && capLeftSq.charAt(0) === "b") editBoard[Math.floor((sqNum)/8)-1][(sqNum % 8)-1] = capLeftSq + "cp"
+            if (capRightSq && capRightSq.charAt(0) === "b") editBoard[Math.floor((sqNum)/8)-1][(sqNum % 8)+1] = capRightSq + "cp"
+
             // pawn can en passant
     
             // pawn can promote
@@ -66,6 +72,11 @@ const Pawn = props => {
            if (!oneSquare) editBoard[Math.floor((sqNum+8)/8)][sqNum % 8] = "av"
 
             // pawn can capture
+            let capLeftSq = editBoard[Math.floor((sqNum)/8)+1][(sqNum % 8)-1]
+            let capRightSq = editBoard[Math.floor((sqNum)/8)+1][(sqNum % 8)+1]
+            if (capLeftSq && capLeftSq.charAt(0) === "w") editBoard[Math.floor((sqNum)/8)+1][(sqNum % 8)-1] = capLeftSq + "cp"
+            if (capRightSq && capRightSq.charAt(0) === "w") editBoard[Math.floor((sqNum)/8)+1][(sqNum % 8)+1] = capRightSq + "cp"
+
     
             // pawn can en passant
     
@@ -74,7 +85,6 @@ const Pawn = props => {
         // update board 
         updateBoard(editBoard)
     }
-
 
     return (
         <div className="Pawn cfb" onClick={clickPawn}>
