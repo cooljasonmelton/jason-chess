@@ -62,7 +62,15 @@ const Board = props => {
         const counter = () => startNum++
         return board.map(rank => rank.map(sq => {
             let sqNum = counter()
-            
+            // available to capture square
+            if (sq && sq.substring(2,4) === 'cp'){
+                return(<div key={sqNum}
+                    className={squareClass(sqNum, sq)}
+                    onClick={() => movePiece(sqNum)}>
+                    <PieceImg piece={sq ? sq : false}/>
+                </div>)
+            }
+
             // available to move square
             if (sq === 'av'){
                 return (
