@@ -7,12 +7,13 @@ import { connect } from 'react-redux';
 import './Board.css';
 
 // helper funcs 
-import isEven from '../../helperFuncs/generalFuncs/isEven'
-import clearAvFromBoard from '../../helperFuncs/gameplayFuncs/clearAvFromBoard'
+import isEven from '../../helperFuncs/generalFuncs/isEven';
+import clearAvFromBoard from '../../helperFuncs/gameplayFuncs/clearAvFromBoard';
 
 // components
-import PieceImg from './PieceImg'
+import PieceImg from './PieceImg';
 import Pawn from '../pieces/pawn/Pawn';
+import Bishop from '../pieces/bishop/Bishop';
 
 const Board = props => {
     // board: array of arrays 
@@ -97,7 +98,7 @@ const Board = props => {
                 return (
                     <div key={sqNum} 
                         className={squareClass(sqNum, sq)}>
-                        <Pawn key={sqNum} piece={sq} sqNum={sqNum}/>                        
+                        <Bishop key={sqNum} piece={sq} sqNum={sqNum}/>                        
                     </div>
                 )
             }
