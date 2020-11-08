@@ -19,17 +19,33 @@ const Bishop = props => {
     const { board, turn, clickSq } = props.state
 
     const clickBishop = () => {
-      console.log(sqNum)
       // copy of board
       const editBoard = clearAvFromBoard([...board])
       
       // if bishop already clicked, clear av squares
-      updateClickSq(sqNum)
       if (clickSq === sqNum) return updateClickSq(null) && updateBoard(editBoard)
+      updateClickSq(sqNum)
 
       // WHITE BISHOP   
       if (turn && piece.charAt(0) === 'w') {
+        let fileP = sqNum % 8
+        let rankP = Math.floor(sqNum / 8)
+        for (let i=1; i<7; i++){
+          if((rankP+i < 8) && (fileP+i < 8)){
+            console.log(editBoard[rankP+i][fileP+i])
+          }
+          if((rankP-i >= 0) && (fileP+i < 8)){
+            console.log(editBoard[rankP-i][fileP+i])
+          }
+          if((rankP+i < 8) && (fileP-i >= 0)){
+            console.log(editBoard[rankP+i][fileP-i])
+          }
+          if((rankP-i >= 0) && (fileP-i >= 0)){
+            console.log(editBoard[rankP-i][fileP-i])
+          }
 
+          
+        }
       }
 
       // BLACK BISHOP
