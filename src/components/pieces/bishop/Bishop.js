@@ -30,21 +30,38 @@ const Bishop = props => {
       if (turn && piece.charAt(0) === 'w') {
         let fileP = sqNum % 8
         let rankP = Math.floor(sqNum / 8)
+        let [riDo, riUp, leUp, leDo] = [true, true, true, true]
         for (let i=1; i<7; i++){
-          if((rankP+i < 8) && (fileP+i < 8)){
-            console.log(editBoard[rankP+i][fileP+i])
+          if((riDo && rankP+i < 8) && (fileP+i < 8)){
+            let riDoSq = editBoard[rankP+i][fileP+i]
+            // if open sq
+            if (!riDoSq) editBoard[rankP+i][fileP+i] = "av"
+            // if white piece
+            if (riDoSq && riDoSq.charAt(0) === "W") riDo = false
+            // if black piece
+            if (riDoSq && riDoSq.charAt(0) === "b") {
+              riDo = false
+              editBoard[rankP+i][fileP+i] = riDoSq + "cp"
+            }
           }
-          if((rankP-i >= 0) && (fileP+i < 8)){
-            console.log(editBoard[rankP-i][fileP+i])
+          if((riUp && rankP-i >= 0) && (fileP+i < 8)){
+            let riUpSq = editBoard[rankP-i][fileP+i]
+            // if open sq
+            if (!riUpSq) editBoard[rankP-i][fileP+i] = "av"
+            // if white piece
+            if (riUpSq && riUpSq.charAt(0) === "W") riUp = false
+            // if black piece
+            if (riUpSq && riUpSq.charAt(0) === "b") {
+              riUp = false
+              editBoard[rankP-i][fileP+i] = riUpSq + "cp"
+            }
           }
           if((rankP+i < 8) && (fileP-i >= 0)){
             console.log(editBoard[rankP+i][fileP-i])
           }
           if((rankP-i >= 0) && (fileP-i >= 0)){
             console.log(editBoard[rankP-i][fileP-i])
-          }
-
-          
+          }         
         }
       }
 
