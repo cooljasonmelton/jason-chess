@@ -26,32 +26,70 @@ const Bishop = props => {
       if (clickSq === sqNum) return updateClickSq(null) && updateBoard(editBoard)
       updateClickSq(sqNum)
 
-      // WHITE BISHOP   
-      if (turn && piece.charAt(0) === 'w') {
-        let fileP = sqNum % 8
-        let rankP = Math.floor(sqNum / 8)
-        for (let i=1; i<7; i++){
-          if((rankP+i < 8) && (fileP+i < 8)){
-            console.log(editBoard[rankP+i][fileP+i])
-          }
-          if((rankP-i >= 0) && (fileP+i < 8)){
-            console.log(editBoard[rankP-i][fileP+i])
-          }
-          if((rankP+i < 8) && (fileP-i >= 0)){
-            console.log(editBoard[rankP+i][fileP-i])
-          }
-          if((rankP-i >= 0) && (fileP-i >= 0)){
-            console.log(editBoard[rankP-i][fileP-i])
-          }
+      // black or white?
+      let getTurn = turn ? "w" : "b"
+      let oppColor = !turn ? "w" : "b"
 
-          
+      // find piece rank and file 
+      let fileP = sqNum % 8
+      let rankP = Math.floor(sqNum / 8)
+      
+      // following for-loop starts from piece sq and runs
+      // outward setting av move sqs until it hits piece
+      // then it assigns capture or just sets condition  
+      // to stop running loop in that direction
+      let [riDo, riUp, leDo, leUp] = [true, true, true, true]
+      for (let i=1; i<7; i++){
+        if(riDo && (rankP+i < 8) && (fileP+i < 8)){
+          let riDoSq = editBoard[rankP+i][fileP+i]
+          // if open sq
+          if (!riDoSq) editBoard[rankP+i][fileP+i] = "av"
+          // if white piece
+          if (riDoSq && riDoSq.charAt(0) === getTurn) riDo = false
+          // if black piece
+          if (riDoSq && riDoSq.charAt(0) === oppColor) {
+            riDo = false
+            editBoard[rankP+i][fileP+i] = riDoSq + "cp"
+          }
         }
+        if(riUp && (rankP-i >= 0) && (fileP+i < 8)){
+          let riUpSq = editBoard[rankP-i][fileP+i]
+          // if open sq
+          if (!riUpSq) editBoard[rankP-i][fileP+i] = "av"
+          // if white piece
+          if (riUpSq && riUpSq.charAt(0) === getTurn) riUp = false
+          // if black piece
+          if (riUpSq && riUpSq.charAt(0) === oppColor) {
+            riUp = false
+            editBoard[rankP-i][fileP+i] = riUpSq + "cp"
+          }
+        }
+        if(leDo && (rankP+i < 8) && (fileP-i >= 0)){
+          let leDoSq = editBoard[rankP+i][fileP-i]
+          // if open sq
+          if (!leDoSq) editBoard[rankP+i][fileP-i] = "av"
+          // if white piece
+          if (leDoSq && leDoSq.charAt(0) === getTurn) leDo = false
+          // if black piece
+          if (leDoSq && leDoSq.charAt(0) === oppColor) {
+            leDo = false
+            editBoard[rankP+i][fileP-i] = leDoSq + "cp"
+          }
+        }
+        if(leUp && (rankP-i >= 0) && (fileP-i >= 0)){
+          let leUpSq = editBoard[rankP-i][fileP-i]
+          // if open sq
+          if (!leUpSq) editBoard[rankP-i][fileP-i] = "av"
+          // if white piece
+          if (leUpSq && leUpSq.charAt(0) === getTurn) leUp = false
+          // if black piece
+          if (leUpSq && leUpSq.charAt(0) === oppColor) {
+            leUp = false
+            editBoard[rankP-i][fileP-i] = leUpSq + "cp"
+          }
+        }         
       }
-
-      // BLACK BISHOP
-      if (!turn && piece.charAt(0) === 'b') {    
-
-      }
+      
       // update board 
       updateBoard(editBoard)
     }

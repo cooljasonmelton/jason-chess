@@ -33,8 +33,10 @@ const Board = props => {
 
         // indicate clickable piece
         let checkP = piece && piece.charAt(0)
+        let checkCap = piece && piece.charAt(2)
         let isTurn = turn ? "w" : "b"
-        if ((checkP === isTurn) || (checkP === "a")) classArr.push("has-p")
+        if ((checkP === isTurn) || (checkP === "a") || (checkCap === "c")) classArr.push("has-p")
+        // return classArr as string
         return classArr.join(" ")
     };
 
