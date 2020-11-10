@@ -1,8 +1,5 @@
 import React from 'react';
 
-// styling
-import './Bishop.css';
-
 // redux
 import { connect } from 'react-redux';
 
@@ -29,7 +26,7 @@ const Bishop = props => {
     // black or white?
     let getTurn = turn ? "w" : "b"
     let oppColor = !turn ? "w" : "b"
-    
+
     // don't run if not turn
     if (piece.charAt(0) === oppColor) return
 

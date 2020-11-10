@@ -1,8 +1,5 @@
 import React from 'react';
 
-// styling
-import './Pawn.css';
-
 // redux
 import { connect } from 'react-redux';
 
