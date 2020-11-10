@@ -26,8 +26,6 @@ const Pawn = props => {
         // WHITE PAWN   
         if (turn && piece.charAt(0) === 'w') {
             // let square = editBoard[Math.floor((sqNum)/8)][sqNum % 8]
-
-
             let oneSquare = editBoard[Math.floor((sqNum-8)/8)][sqNum % 8]
 
             // pawn can move two spaces
