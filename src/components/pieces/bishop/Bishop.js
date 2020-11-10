@@ -29,10 +29,14 @@ const Bishop = props => {
     // black or white?
     let getTurn = turn ? "w" : "b"
     let oppColor = !turn ? "w" : "b"
+    
+    // don't run if not turn
+    if (piece.charAt(0) === oppColor) return
 
     // find piece rank and file 
     let fileP = sqNum % 8
     let rankP = Math.floor(sqNum / 8)
+
     
     // following for-loop starts from piece sq and runs
     // outward setting av move sqs until it hits piece
