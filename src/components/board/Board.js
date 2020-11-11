@@ -15,6 +15,8 @@ import PieceImg from './PieceImg';
 import Pawn from '../pieces/pawn/Pawn';
 import Bishop from '../pieces/bishop/Bishop';
 import Rook from '../pieces/rook/Rook';
+import Queen from '../pieces/queen/Queen';
+
 
 
 const Board = props => {
@@ -132,7 +134,7 @@ const Board = props => {
                 return (
                     <div key={sqNum} 
                         className={squareClass(sqNum, sq)}>
-                        <Pawn key={sqNum} piece={sq} sqNum={sqNum}/>                        
+                        <Queen key={sqNum} piece={sq} sqNum={sqNum}/>                        
                     </div>
                 )
             }
