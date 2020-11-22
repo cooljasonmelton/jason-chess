@@ -9,7 +9,6 @@ import clearAvFromBoard from '../../../helperFuncs/gameplayFuncs/clearAvFromBoar
 // components
 import PieceImg from '../../board/PieceImg'
 
-
 const Knight = props => {
     // const [clicked, setClicked] = useState(false)
     const { piece, sqNum, updateBoard, updateClickSq } =  props
@@ -24,7 +23,7 @@ const Knight = props => {
         updateClickSq(sqNum)
 
         // black or white?
-        let getTurn = turn ? "w" : "b"
+        // let getTurn = turn ? "w" : "b"
         let oppColor = !turn ? "w" : "b"
 
         // don't run if not turn
@@ -34,36 +33,32 @@ const Knight = props => {
         let fileP = sqNum % 8
         let rankP = Math.floor(sqNum / 8)
 
-        const setMoveSqs = sq => { 
-          if (!sq) editBoard[rankP-2][fileP-1] = 'av'
-          if (sq && sq.charAt(0) === 'b') editBoard[rankP-2][fileP-1] = sq + 'cp'
+        const setMoveSqs = (sq, rankM, fileM) => { 
+          if (!sq) editBoard[rankP + rankM][fileP + fileM] = 'av'
+          if (sq && sq.charAt(0) === oppColor) editBoard[rankP + rankM][fileP + fileM] = sq + 'cp'
         }
 
-        console.log(fileP+1, fileP+2, fileP-1, fileP-2, rankP+1, rankP+2, rankP-1, rankP-2)
-        if (fileP+1 < 8) 
-        if (fileP+2 < 8) 
-        if (rankP+1 < 8) 
-        if (rankP+2 < 8) 
-        if (fileP-1 < 0) 
-        if (fileP-2 < 0) 
-        if (rankP-1 < 0) 
-        if (rankP-2 < 0) 
-        // setMoveSqs(editBoard[rankP-2][fileP-1])
-        // setMoveSqs(editBoard[rankP-2][fileP+1])
-        // setMoveSqs(editBoard[rankP-2][fileP-1])
-        // setMoveSqs(editBoard[rankP-2][fileP-1])
-        // setMoveSqs(editBoard[rankP-2][fileP-1])
-        // setMoveSqs(editBoard[rankP-2][fileP-1])
-        // setMoveSqs(editBoard[rankP-2][fileP-1])
-        // setMoveSqs(editBoard[rankP-2][fileP-1])
-     
+        if (rankP+2 < 8) {
+          if (fileP+1 < 8) setMoveSqs(editBoard[rankP+2][fileP+1], 2, 1)
+          if (fileP-1 >= 0) setMoveSqs(editBoard[rankP+2][fileP-1], 2, -1)  
+        }
+        if (rankP-2 >= 0) {
+          if (fileP+1 < 8) setMoveSqs(editBoard[rankP-2][fileP+1], -2, 1)
+          if (fileP-1 >= 0) setMoveSqs(editBoard[rankP-2][fileP-1], -2, -1)  
+        }
+        if (rankP+1 < 8) {
+          if (fileP+2 < 8) setMoveSqs(editBoard[rankP+1][fileP+2], 1, 2)
+          if (fileP-2 >= 0) setMoveSqs(editBoard[rankP+1][fileP-2], 1, -2)
+        }
+        if (rankP-1 >= 0) {
+          if (fileP+2 < 8) setMoveSqs(editBoard[rankP-1][fileP+2], -1, 2)
+          if (fileP-2 >= 0) setMoveSqs(editBoard[rankP-1][fileP-2], -1, -2)
+        }
 
-        
         // update board 
         updateBoard(editBoard)
     }
     
-
     return (
         <div className="Knight cfb" onClick={clickKnight}>
           <PieceImg piece={piece}/>
