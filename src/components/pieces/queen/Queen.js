@@ -11,14 +11,14 @@ import PieceImg from '../../board/PieceImg'
 
 
 const Queen = props => {
-  // const [clicked, setClicked] = useState(false)
-  const { piece, sqNum, updateBoard, updateClickSq } =  props
-  const { board, turn, clickSq } = props.state
+    // const [clicked, setClicked] = useState(false)
+    const { piece, sqNum, updateBoard, updateClickSq } =  props
+    const { board, turn, clickSq } = props.state
 
-  const clickQueen = () => {
+    const clickQueen = () => {
     // copy of board
     const editBoard = clearAvFromBoard([...board])
-    
+
     // if Queen already clicked, clear av squares
     if (clickSq === sqNum) return updateClickSq(null) && updateBoard(editBoard)
     updateClickSq(sqNum)
