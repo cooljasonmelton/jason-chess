@@ -9,7 +9,6 @@ import clearAvFromBoard from '../../../helperFuncs/gameplayFuncs/clearAvFromBoar
 // components
 import PieceImg from '../../board/PieceImg'
 
-
 const Knight = props => {
     // const [clicked, setClicked] = useState(false)
     const { piece, sqNum, updateBoard, updateClickSq } =  props
@@ -24,7 +23,7 @@ const Knight = props => {
         updateClickSq(sqNum)
 
         // black or white?
-        let getTurn = turn ? "w" : "b"
+        // let getTurn = turn ? "w" : "b"
         let oppColor = !turn ? "w" : "b"
 
         // don't run if not turn
@@ -60,7 +59,6 @@ const Knight = props => {
         updateBoard(editBoard)
     }
     
-
     return (
         <div className="Knight cfb" onClick={clickKnight}>
           <PieceImg piece={piece}/>
