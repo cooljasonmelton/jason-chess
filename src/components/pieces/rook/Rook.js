@@ -10,16 +10,16 @@ import clearAvFromBoard from '../../../helperFuncs/gameplayFuncs/clearAvFromBoar
 import PieceImg from '../../board/PieceImg'
 
 
-const Queen = props => {
-    // const [clicked, setClicked] = useState(false)
-    const { piece, sqNum, updateBoard, updateClickSq } =  props
-    const { board, turn, clickSq } = props.state
+const Rook = props => {
+  // const [clicked, setClicked] = useState(false)
+  const { piece, sqNum, updateBoard, updateClickSq } =  props
+  const { board, turn, clickSq } = props.state
 
-    const clickQueen = () => {
+  const clickRook = () => {
     // copy of board
     const editBoard = clearAvFromBoard([...board])
-
-    // if Queen already clicked, clear av squares
+    
+    // if Rook already clicked, clear av squares
     if (clickSq === sqNum) return updateClickSq(null) && updateBoard(editBoard)
     updateClickSq(sqNum)
 
@@ -38,7 +38,7 @@ const Queen = props => {
     // outward setting av move sqs until it hits piece
     // then it assigns capture or just sets condition  
     // to stop running loop in that direction
-    let [iRight, iDown, iLeft, iUp, riDo, riUp, leDo, leUp] = [true, true, true, true, true, true, true, true]
+    let [iRight, iDown, iLeft, iUp] = [true, true, true, true]
     for (let i=1; i<7; i++){
       if(iRight && (fileP+i < 8)){
         let iRightSq = editBoard[rankP][fileP+i]
@@ -87,55 +87,7 @@ const Queen = props => {
           iUp = false
           editBoard[rankP-i][fileP] = iUpSq + "cp"
         }
-      }
-      if(riDo && (rankP+i < 8) && (fileP+i < 8)){
-        let riDoSq = editBoard[rankP+i][fileP+i]
-        // if open sq
-        if (!riDoSq) editBoard[rankP+i][fileP+i] = "av"
-        // if white piece
-        if (riDoSq && riDoSq.charAt(0) === getTurn) riDo = false
-        // if black piece
-        if (riDoSq && riDoSq.charAt(0) === oppColor) {
-          riDo = false
-          editBoard[rankP+i][fileP+i] = riDoSq + "cp"
-        }
-      }
-      if(riUp && (rankP-i >= 0) && (fileP+i < 8)){
-        let riUpSq = editBoard[rankP-i][fileP+i]
-        // if open sq
-        if (!riUpSq) editBoard[rankP-i][fileP+i] = "av"
-        // if white piece
-        if (riUpSq && riUpSq.charAt(0) === getTurn) riUp = false
-        // if black piece
-        if (riUpSq && riUpSq.charAt(0) === oppColor) {
-          riUp = false
-          editBoard[rankP-i][fileP+i] = riUpSq + "cp"
-        }
-      }
-      if(leDo && (rankP+i < 8) && (fileP-i >= 0)){
-        let leDoSq = editBoard[rankP+i][fileP-i]
-        // if open sq
-        if (!leDoSq) editBoard[rankP+i][fileP-i] = "av"
-        // if white piece
-        if (leDoSq && leDoSq.charAt(0) === getTurn) leDo = false
-        // if black piece
-        if (leDoSq && leDoSq.charAt(0) === oppColor) {
-          leDo = false
-          editBoard[rankP+i][fileP-i] = leDoSq + "cp"
-        }
-      }
-      if(leUp && (rankP-i >= 0) && (fileP-i >= 0)){
-        let leUpSq = editBoard[rankP-i][fileP-i]
-        // if open sq
-        if (!leUpSq) editBoard[rankP-i][fileP-i] = "av"
-        // if white piece
-        if (leUpSq && leUpSq.charAt(0) === getTurn) leUp = false
-        // if black piece
-        if (leUpSq && leUpSq.charAt(0) === oppColor) {
-          leUp = false
-          editBoard[rankP-i][fileP-i] = leUpSq + "cp"
-        }
-      }      
+      }         
     }
       
       // update board 
@@ -143,7 +95,7 @@ const Queen = props => {
     }
 
   return (
-    <div className="Queen cfb" onClick={clickQueen}>
+    <div className="Rook cfb" onClick={clickRook}>
       <PieceImg piece={piece}/>
     </div>
   );
@@ -164,7 +116,7 @@ const mapDispatchToProps = dispatch => {
     updateClickSq: clickSq => dispatch({ type: 'UPDATE_SQUARE', payload: clickSq }),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Queen);
+export default connect(mapStateToProps, mapDispatchToProps)(Rook);
 
 
 

@@ -13,7 +13,12 @@ import clearAvFromBoard from '../../helperFuncs/gameplayFuncs/clearAvFromBoard';
 // components
 import PieceImg from './PieceImg';
 import Pawn from '../pieces/pawn/Pawn';
+import Knight from '../pieces/knight/Knight';
 import Bishop from '../pieces/bishop/Bishop';
+import Rook from '../pieces/rook/Rook';
+import Queen from '../pieces/queen/Queen';
+
+
 
 const Board = props => {
     // board: array of arrays 
@@ -110,7 +115,7 @@ const Board = props => {
                 return (
                     <div key={sqNum} 
                         className={squareClass(sqNum, sq)}>
-                        <Pawn key={sqNum} piece={sq} sqNum={sqNum}/>                        
+                        <Knight key={sqNum} piece={sq} sqNum={sqNum}/>                        
                     </div>
                 )
             }
@@ -120,7 +125,7 @@ const Board = props => {
                 return (
                     <div key={sqNum} 
                         className={squareClass(sqNum, sq)}>
-                        <Pawn key={sqNum} piece={sq} sqNum={sqNum}/>                        
+                        <Rook key={sqNum} piece={sq} sqNum={sqNum}/>                        
                     </div>
                 )
             }
@@ -130,7 +135,7 @@ const Board = props => {
                 return (
                     <div key={sqNum} 
                         className={squareClass(sqNum, sq)}>
-                        <Pawn key={sqNum} piece={sq} sqNum={sqNum}/>                        
+                        <Queen key={sqNum} piece={sq} sqNum={sqNum}/>                        
                     </div>
                 )
             }
